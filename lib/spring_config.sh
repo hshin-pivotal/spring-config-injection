@@ -32,5 +32,4 @@ echo "starting spring_config"
 while read key value
 do
 	export "$key"="$value"
-    echo "$key=$value"
 done <<< "`python $DEPS_DIR/$INSTANCE_INDEX/spring_config.py`"
