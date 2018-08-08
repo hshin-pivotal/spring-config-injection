@@ -31,11 +31,13 @@ echo "starting spring_config"
 
 #__BUILDPACK_INDEX__ gets replaced by bin/supply at cf push
 
+set -x
 while read key value
 do
 	echo "$key***"
 	echo "$value***"
-	value=${value//"/\"} # ${VARIABLE//PATTERN/REPLACEMENT}
+	#value=${value//"/\"} # ${VARIABLE//PATTERN/REPLACEMENT}
+	value=$(echo $value | sed "s/\([\'\"]\)/\\\\\1")
 	echo "$value"
 	export "$key"="$value"
 done <<< "`python $DEPS_DIR/__BUILDPACK_INDEX__/spring_config.py`"
