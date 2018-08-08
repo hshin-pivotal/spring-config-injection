@@ -149,7 +149,7 @@ def save_config_properties(service, config):
 		},
 		{
 			#'filter': '([a-z0-9]+\\.)+[a-z0-9]+$',
-			'filter': '([a-z0-9])+[a-z0-9]+$',
+			'filter': '([a-z0-9]+\.)+[a-z0-9]+$',
 			'target': 'file:config-server.properties',
 			'format': 'properties',
 		},
