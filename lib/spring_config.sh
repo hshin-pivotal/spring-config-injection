@@ -35,5 +35,5 @@ while read key value
 do
 	echo $key
 	echo $value
-	export "$key"="$value"
+#	export "$key"="$value"
 done <<< "`python $DEPS_DIR/__BUILDPACK_INDEX__/spring_config.py`"
