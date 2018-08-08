@@ -54,7 +54,7 @@ def get_vcap_config():
 	global vcap_config
 	global log_level
 	global skip_ssl_validation
-	vcap_config = json.loads(os.getenv('VCAPX_CONFIG', '{}'))
+	vcap_config = json.loads(os.getenv('VCAP_CONFIG', '{}'))
 	log_level = vcap_config.get('loglevel', 1)
 	skip_ssl_validation = vcap_config.get('skip_ssl_validation', False)
 
@@ -137,7 +137,7 @@ def get_spring_cloud_config(service, appinfo):
 
 def save_config_properties(service, config):
 	#
-	# Targets are configurable through VCAPX_CONFIG
+	# Targets are configurable through VCAP_CONFIG
 	# Provided defaults direct properties to various places
 	# based on simple pattern matching.
 	#
@@ -204,7 +204,7 @@ def save_config_properties(service, config):
 			with open(filename, 'wb') as property_file:
 				write_property_file(property_file, properties, format)
 		else:
-			print >> sys.stderr, "Illegal target type", destination, "in VCAPX_CONFIG"
+			print >> sys.stderr, "Illegal target type", destination, "in VCAP_CONFIG"
 	#
 	# And update VCAP_CONFIG to reflect downloaded properties
 	#
@@ -222,7 +222,7 @@ def write_property_file(file, properties, format):
 		for key, value in properties:
 			print >> file, key + '=' + value
 	else:
-		print >> sys.stderr, "Illegal format", format, "in VCAPX_CONFIG"
+		print >> sys.stderr, "Illegal format", format, "in VCAP_CONFIG"
 
 def add_environment_variable(key, value):
 	#
