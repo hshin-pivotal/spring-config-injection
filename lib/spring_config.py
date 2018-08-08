@@ -217,10 +217,10 @@ def write_property_file(file, properties, format):
 	elif format == 'yml':
 		print >> file, '---'
 		for key, value in properties:
-			print >> file, key, value
+			print >> file, '%s' % (key + '=' + value)
 	elif format in [ 'properties', 'text' ]:
 		for key, value in properties:
-			print >> file, key + '=' + value
+			print >> file, '%s' % (key + '=' + value)
 	else:
 		print >> sys.stderr, "Illegal format", format, "in VCAP_CONFIG"
 
